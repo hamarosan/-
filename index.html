@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>?????</title>
+    <title>??????</title>
     <link rel="icon" href="kerdojel.png" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet"> 
     <style>
         body {
             margin: 0;
@@ -14,18 +14,46 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #2C5364, #0F2027, #203A43);
-            background-size: 200% 200%;
-            animation: backgroundMove 20s ease infinite; 
+            font-family: 'Poppins', sans-serif;
             color: #fff;
             text-align: center;
+            background: radial-gradient(circle, #f5f5dc, #000000);
+            background-size: 300% 300%;
+            animation: spinningBackground 10s linear infinite; 
+        }
+        @keyframes spinningBackground {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        #title-container {
+            position: absolute;
+            top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #title-container img {
+            height: 50px;
+        }
+
+        #title-container span {
+            font-size: 2rem;
+            color: white;
         }
 
         #countdown {
             display: flex;
-            gap: 50px; 
-            font-size: 4rem;
+            gap: 70px;
+            font-size: 5rem;
         }
 
         .time-box {
@@ -36,26 +64,17 @@
 
         .label {
             font-size: 1.5rem;
-            margin-top: 15px;
+            margin-top: 10px;
             text-transform: uppercase;
             color: rgba(255, 255, 255, 0.8);
         }
+
+     
         .time-box span {
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
-        }
-        @keyframes backgroundMove {
-            0% {
-                background-position: 0% 0%;
-            }
-            50% {
-                background-position: 100% 100%;
-            }
-            100% {
-                background-position: 0% 0%;
-            }
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
         }
 
-
+      
         @keyframes flash {
             0%, 100% {
                 opacity: 1;
@@ -68,10 +87,12 @@
         .flash {
             animation: flash 0.5s ease-in-out;
         }
-        @media (max-width: 600px) {
+
+  
+        @media (max-width: 768px) {
             #countdown {
                 flex-direction: column;
-                gap: 30px;
+                gap: 40px;
                 font-size: 3rem;
             }
 
@@ -82,6 +103,11 @@
     </style>
 </head>
 <body>
+
+    <div id="title-container">
+        <img src="kerdojel.png" alt="Logo">
+        <span>Visszaszámláló</span>
+    </div>
 
     <div id="countdown">
         <div class="time-box" id="days-box">
@@ -104,7 +130,7 @@
 
     <script>
         function countdown() {
-            const countDownDate = new Date("2024-10-07T18:00:00").getTime();
+            const countDownDate = new Date("2024-10-06T17:00:00").getTime();
 
             const x = setInterval(function () {
                 const now = new Date().getTime();
@@ -126,6 +152,8 @@
                 }
             }, 1000);
         }
+
+
         function flashAnimation() {
             const countdown = document.getElementById("countdown");
             countdown.classList.add("flash");
