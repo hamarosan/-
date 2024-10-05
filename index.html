@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>??????</title>
-    <link rel="icon" href="kerdojel.png" type="image/png">
+    <title>Visszaszámláló</title>
+    <link rel="icon" href="kerdojel.png" type="image/png"> 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet"> 
     <style>
         body {
@@ -17,9 +17,9 @@
             font-family: 'Poppins', sans-serif;
             color: #fff;
             text-align: center;
-            background: radial-gradient(circle, #f5f5dc, #000000);
-            background-size: 300% 300%;
-            animation: spinningBackground 10s linear infinite; 
+            background: radial-gradient(circle, #3b3b3b, #0b0b0b);
+            background-size: 400% 400%;
+            animation: spinningBackground 20s ease-in-out infinite;
         }
         @keyframes spinningBackground {
             0% {
@@ -68,13 +68,9 @@
             text-transform: uppercase;
             color: rgba(255, 255, 255, 0.8);
         }
-
-     
         .time-box span {
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
         }
-
-      
         @keyframes flash {
             0%, 100% {
                 opacity: 1;
@@ -87,8 +83,6 @@
         .flash {
             animation: flash 0.5s ease-in-out;
         }
-
-  
         @media (max-width: 768px) {
             #countdown {
                 flex-direction: column;
@@ -103,12 +97,6 @@
     </style>
 </head>
 <body>
-
-    <div id="title-container">
-        <img src="kerdojel.png" alt="Logo">
-        <span>Visszaszámláló</span>
-    </div>
-
     <div id="countdown">
         <div class="time-box" id="days-box">
             <span id="days">00</span>
@@ -130,7 +118,7 @@
 
     <script>
         function countdown() {
-            const countDownDate = new Date("2024-10-09T17:00:00").getTime();
+            const countDownDate = new Date("2024-10-09T18:00:00").getTime();
 
             const x = setInterval(function () {
                 const now = new Date().getTime();
@@ -152,8 +140,6 @@
                 }
             }, 1000);
         }
-
-
         function flashAnimation() {
             const countdown = document.getElementById("countdown");
             countdown.classList.add("flash");
