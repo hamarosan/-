@@ -115,6 +115,7 @@
             <span class="label">Másodperc</span>
         </div>
     </div>
+    <audio id="background-audio" src="webzene.mp3" loop></audio>
 
     <script>
         function countdown() {
@@ -136,10 +137,11 @@
 
                 if (distance < 0) {
                     clearInterval(x);
-                    document.getElementById("countdown").innerHTML = "Lejárt!";
+                    window.location.href = "https://www.youtube.com/@balazs799"; // Redirect to YouTube
                 }
             }, 1000);
         }
+
         function flashAnimation() {
             const countdown = document.getElementById("countdown");
             countdown.classList.add("flash");
@@ -148,11 +150,16 @@
                 countdown.classList.remove("flash");
             }, 500);
         }
-
-
+        function playAudio() {
+            const audio = document.getElementById("background-audio");
+            audio.volume = 0.2; 
+            if (audio.paused) {
+                audio.play();
+            }
+        }
         setInterval(flashAnimation, 10000);
-
         countdown();
+        playAudio(); 
     </script>
 </body>
 </html>
