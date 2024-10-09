@@ -3,163 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>??????</title>
-    <link rel="icon" href="kerdojel.png" type="image/png"> 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet"> 
+    <link rel="icon" href="logo1.png" type="image/png"> 
+    <title>Balázs csatornája</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
+        /* Alapbeállítások */
         body {
             margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: 'Poppins', sans-serif;
-            color: #fff;
-            text-align: center;
-            background: radial-gradient(circle, #3b3b3b, #0b0b0b);
-            background-size: 400% 400%;
-            animation: spinningBackground 20s ease-in-out infinite;
-        }
-        @keyframes spinningBackground {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        #title-container {
-            position: absolute;
-            top: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        #title-container img {
-            height: 50px;
-        }
-
-        #title-container span {
-            font-size: 2rem;
-            color: white;
-        }
-
-        #countdown {
-            display: flex;
-            gap: 70px;
-            font-size: 5rem;
-        }
-
-        .time-box {
+            font-family: 'Roboto', sans-serif;
+            background-color: #000;
+            color: #00E5FF;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: center; /* Középre igazítás */
+            justify-content: center; /* Középre igazítás */
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
         }
 
-        .label {
-            font-size: 1.5rem;
-            margin-top: 10px;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.8);
+        /* Háttér animáció */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1; /* Háttér mögött */
         }
-        .time-box span {
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+
+        .star {
+            position: absolute;
+            border-radius: 50%;
+            background-color: #FFFFFF; /* Fehér szín a csillagokhoz */
+            animation: twinkle 2s infinite;
         }
-        @keyframes flash {
-            0%, 100% {
-                opacity: 1;
+
+        @keyframes twinkle {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
             }
             50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
                 opacity: 0;
+                transform: scale(0.8);
             }
         }
 
-        .flash {
-            animation: flash 0.5s ease-in-out;
+        /* Navigáció */
+        header {
+            position: absolute; /* Fix pozíció */
+            top: 20px; /* Felső margó */
+            right: 20px; /* Jobb margó */
+            display: flex;
+            gap: 15px;
         }
-        @media (max-width: 768px) {
-            #countdown {
-                flex-direction: column;
-                gap: 40px;
-                font-size: 3rem;
-            }
 
-            .label {
-                font-size: 1rem;
-            }
+        .nav-button {
+            text-decoration: none;
+            color: #00E5FF;
+            font-weight: 700;
+            padding: 10px 20px;
+            border: 2px solid #00E5FF;
+            border-radius: 5px;
+            background-color: transparent;
+            transition: transform 0.3s;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Kezdőlap */
+        #home {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Középre igazítás */
+            justify-content: center; /* Középre igazítás */
+            text-align: center;
+            margin-top: 20px; /* Megfelelő helyzet a logónak */
+        }
+
+        #logo {
+            max-width: 60%; /* Logó méretének csökkentése */
+            height: auto; /* Arányos magasság */
+        }
+
+        /* Tartalom dobozok */
+        .content {
+            display: none; /* Eltüntetve, amíg nem szükséges */
+            background-color: rgba(20, 20, 20, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            width: 90%;
+            max-width: 600px;
+            margin-top: 20px; /* Felső margó a dobozokhoz */
+            text-align: center; /* Szöveg középre igazítása */
+            border: 2px solid #00E5FF; /* Neon keret */
+            box-shadow: 0 0 10px #00E5FF, 0 0 20px #00E5FF, 0 0 30px #00E5FF; /* Neon hatás */
+        }
+
+        /* Rólam szekció */
+        #about {
+            display: none; /* Eltüntetve, amíg nem szükséges */
+        }
+
+        /* Setup szekció */
+        #setup {
+            display: none; /* Eltüntetve, amíg nem szükséges */
+        }
+
+        .setup-item {
+            color: #00E5FF; /* Egységes szín */
+            margin: 10px 0;
+        }
+
+        a {
+            color: #00E5FF; 
+            text-decoration: underline; /* Aláhúzott a kattinthatóság érdekében */
+        }
+
+        a:hover {
+            color: #fff; /* Kattintáskor a színváltozás */
         }
     </style>
 </head>
 <body>
-    <div id="countdown">
-        <div class="time-box" id="days-box">
-            <span id="days">00</span>
-            <span class="label">Nap</span>
-        </div>
-        <div class="time-box" id="hours-box">
-            <span id="hours">00</span>
-            <span class="label">Óra</span>
-        </div>
-        <div class="time-box" id="minutes-box">
-            <span id="minutes">00</span>
-            <span class="label">Perc</span>
-        </div>
-        <div class="time-box" id="seconds-box">
-            <span id="seconds">00</span>
-            <span class="label">Másodperc</span>
-        </div>
+    <!-- Háttér animáció -->
+    <div class="background">
+        <div class="star" style="top: 10%; left: 20%; width: 5px; height: 5px; animation-delay: 0s;"></div>
+        <div class="star" style="top: 30%; left: 40%; width: 8px; height: 8px; animation-delay: 1s;"></div>
+        <div class="star" style="top: 50%; left: 60%; width: 4px; height: 4px; animation-delay: 0.5s;"></div>
+        <div class="star" style="top: 70%; left: 80%; width: 7px; height: 7px; animation-delay: 1.5s;"></div>
+        <div class="star" style="top: 20%; left: 70%; width: 6px; height: 6px; animation-delay: 0.8s;"></div>
+        <div class="star" style="top: 80%; left: 30%; width: 3px; height: 3px; animation-delay: 1.2s;"></div>
+        <!-- További csillagok -->
     </div>
-    <audio id="background-audio" src="webzene.mp3" loop></audio>
 
+    <!-- Navigáció -->
+    <header>
+        <a href="#" class="nav-button" onclick="showSection('home')">Kezdőlap</a>
+        <a href="#" class="nav-button" onclick="showSection('about')">Rólam</a>
+        <a href="#" class="nav-button" onclick="showSection('setup')">Setup</a>
+    </header>
+
+    <!-- Kezdőlap -->
+    <div id="home">
+        <img id="logo" src="logo1.png" alt="Logo"> <!-- Logo megjelenítése -->
+    </div>
+
+    <!-- Rólam szekció -->
+    <div id="about" class="content">
+        <h2 style="font-weight: 700; color: #00BFFF;">Rólam</h2> <!-- Kék szín a címhez -->
+        <p style="font-weight: 300; color: #e0e0e0;">
+            Balázs vagyok. A célom az, hogy egy nagyon jó közösséget tudhassak magaménak. Legfőképpen gaming és tech tartalmakat készítek. Már jó pár éve foglalkoztat ez az egész youtubeos tevékenység, de most jutottam el arra a szintre, hogy élvezhető videókat készítsek. Ha szeretnél a közösség tagja lenni, kattints <a href="https://www.youtube.com/@balazs799" target="_blank" style="color: #00BFFF; text-decoration: underline;">ide</a> a feliratkozásért! 
+        </p>
+    </div>
+
+    <!-- Setup szekció -->
+    <div id="setup" class="content">
+        <h2 style="font-weight: 700; color: #00BFFF;">Setup</h2> <!-- Egységes szín a címhez -->
+        <div class="setup-item"><b>Processzor:</b> I5 12400f</div>
+        <div class="setup-item"><b>Videókártya:</b> NVIDIA GeForce RTX 3060</div>
+        <div class="setup-item"><b>Memória:</b> G.skill aegis 2x8gb 3200mhz</div>
+        <div class="setup-item"><b>Tápegység:</b> Deepcool PF650</div>
+        <div class="setup-item"><b>Billentyűzet:</b> Redragon k552 rgb </div>
+        <div class="setup-item"><b>Egér:</b> Redragon nemeanlion 2 </div>
+        <div class="setup-item"><b>Mikrofon:</b> Fifine a6v </div>
+        <div class="setup-item"><b>Monitor:</b> LG UltraGear 24GQ50F</div>
+        <div class="setup-item"><b>Monitor:</b> Acer X192W</div>
+    </div>
+    
+    <!-- Szkript a szekciók közötti váltáshoz -->
     <script>
-        function countdown() {
-            const countDownDate = new Date("2024-10-09T18:00:00").getTime();
+        const sections = ['home', 'about', 'setup'];
 
-            const x = setInterval(function () {
-                const now = new Date().getTime();
-                const distance = countDownDate - now;
-
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById("days").innerHTML = days;
-                document.getElementById("hours").innerHTML = hours;
-                document.getElementById("minutes").innerHTML = minutes;
-                document.getElementById("seconds").innerHTML = seconds;
-
-                if (distance < 0) {
-                    clearInterval(x);
-                    window.location.href = "https://www.youtube.com/@balazs799"; // Redirect to YouTube
-                }
-            }, 1000);
+        function showSection(sectionId) {
+            sections.forEach(sec => {
+                document.getElementById(sec).style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
         }
 
-        function flashAnimation() {
-            const countdown = document.getElementById("countdown");
-            countdown.classList.add("flash");
-
-            setTimeout(() => {
-                countdown.classList.remove("flash");
-            }, 500);
-        }
-        function playAudio() {
-            const audio = document.getElementById("background-audio");
-            audio.volume = 0.2; 
-            if (audio.paused) {
-                audio.play();
-            }
-        }
-        setInterval(flashAnimation, 10000);
-        countdown();
-        playAudio(); 
+        showSection('home'); // Alapértelmezett szekció
     </script>
 </body>
 </html>
